@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 public class OrderService {
     private final IRepository<MenuItem, Integer> menuRepository;
     private final IRepository<Order, Integer> orderRepository;
@@ -32,11 +31,9 @@ public class OrderService {
         this.pricingRules = PricingRules.getInstance();
     }
 
-
     public List<MenuItem> getAvailableMenuItems() throws Exception {
         return ((MenuRepository) menuRepository).findAvailableItems();
     }
-
 
     public List<MenuItem> searchMenuItemsByCategory(String category) throws Exception {
         List<MenuItem> items = menuRepository.findAll();
@@ -45,14 +42,12 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-
     public List<MenuItem> searchMenuItems(MenuItemFilter filter) throws Exception {
         List<MenuItem> items = menuRepository.findAll();
         return items.stream()
                 .filter(filter::test)
                 .collect(Collectors.toList());
     }
-
 
     public Order createOrderWithBuilder(int customerId, List<OrderItem> items, String deliveryOption) throws Exception {
         OrderBuilder builder = new OrderBuilder(nextOrderId++, customerId);
@@ -64,7 +59,6 @@ public class OrderService {
 
         return builder.build();
     }
-
 
     public Order placeOrder(int customerId, List<OrderItem> items, String deliveryOption,
                             OrderCallback callback) throws Exception {
@@ -91,21 +85,15 @@ public class OrderService {
         return order;
     }
 
-
     public List<Order> getCustomerOrders(int customerId) throws Exception {
         return ((OrderRepository) orderRepository).findByCustomerId(customerId).stream()
                 .sorted((o1, o2) -> o2.getCreatedAt().compareTo(o1.getCreatedAt()))
                 .collect(Collectors.toList());
     }
 
-
     public List<Order> getActiveOrders() throws Exception {
-        return ((OrderRepository)
-
-                > Miqas:
-        orderRepository).findActiveOrders();
+        return ((OrderRepository) orderRepository).findActiveOrders();
     }
-
 
     public void completeOrder(int orderId) throws Exception {
         Optional<Order> order = orderRepository.findById(orderId);
@@ -115,7 +103,6 @@ public class OrderService {
             orderRepository.update(o);
         }
     }
-
 
     public DeliveryOrder createDeliveryOrder(int orderId, String deliveryType,
                                              int customerId, double totalPrice) throws Exception {
@@ -134,11 +121,9 @@ public class OrderService {
         );
     }
 
-
     public PricingRules getPricingRules() {
         return pricingRules;
     }
-
 
     public void printOrderSummary() throws Exception {
         List<Order> allOrders = orderRepository.findAll();
