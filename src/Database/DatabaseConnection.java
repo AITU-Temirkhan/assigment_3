@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 public class DatabaseConnection {
     private static final String URL =
-            "jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require";
-    private static final String USER = "postgres.eatwldgvgzxpyolzapzm";
+            "jdbc:postgresql://aws-1-ap-south-1.pooler.supabase.com:6543/postgres?sslmode=require";
+    private static final String USER = "postgres.sknpvqxnfplohhbbgsnl";
     private static final String PASSWORD = loadPassword();
     private static String loadPassword() {
         Properties props = new Properties();
