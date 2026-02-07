@@ -60,25 +60,22 @@ public class MenuRepository implements IRepository<MenuItem, Integer> {
         return items;
     }
 
-    /**
-     * Фильтрация с использованием Lambda (Functional Programming)
-     */
+    
+    //Lambda
+    
     public List<MenuItem> filterItems(java.util.function.Predicate<MenuItem> filter) throws Exception {
         return findAll().stream()
                 .filter(filter)
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Найти доступные товары (использует метод-ссылку)
-     */
     public List<MenuItem> findAvailableItems() throws Exception {
         return filterItems(MenuItem::isAvailable);
     }
 
-    /**
-     * Найти товары в диапазоне цен (Lambda выражение)
-     */
+    
+    //(Lambda выражение)
+    
     public List<MenuItem> findByPriceRange(double minPrice, double maxPrice) throws Exception {
         return filterItems(item -> item.getPrice() >= minPrice && item.getPrice() <= maxPrice);
     }
