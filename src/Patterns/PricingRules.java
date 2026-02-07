@@ -1,9 +1,8 @@
 package Patterns;
 
-/**
- * Singleton Pattern: PricingRules Configuration
- * Управляет ценообразованием и налогами
- */
+
+//Singleton Pattern: PricingRules Configuration
+ 
 public class PricingRules {
     private static PricingRules instance;
 
